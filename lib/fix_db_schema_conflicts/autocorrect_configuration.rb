@@ -5,15 +5,7 @@ module FixDBSchemaConflicts
     end
 
     def load
-      if less_than_rubocop?(49)
-        '.rubocop_schema.yml'
-      elsif less_than_rubocop?(53)
-        '.rubocop_schema.49.yml'
-      elsif more_than_rubocop?(1, 8)
-        '.rubocop_schema.1.8.yml'
-      else 
-        '.rubocop_schema.53.yml'
-      end
+      '.rubocop_schema.1.8.yml'
     end
 
     private
@@ -22,8 +14,5 @@ module FixDBSchemaConflicts
       Gem.loaded_specs['rubocop'].version < Gem::Version.new("0.#{ver}.0")
     end
 
-    def more_than_rubocop?(maj, min)
-      Gem.loaded_specs['rubocop'].version < Gem::Version.new("#{maj}.#{min}.0")
-    end
   end
 end
